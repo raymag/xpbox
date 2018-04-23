@@ -1,4 +1,4 @@
-var starNumber = 50;
+var starNumber = 2000;
 var stars = new Array;
 
 function setup() {
@@ -9,7 +9,7 @@ function setup() {
 }
 
 function draw() {
-  background(0);
+  background(22, 25, 50);
   for(var i=0;i<starNumber;i++){
     stars[i].show();
   }
@@ -23,10 +23,19 @@ function Star(){
   this.redtone = random(100, 255);
   this.greentone = this.redtone;
   this.bluetone = this.greentone;
+  this.speed = 1;
 
   this.move = function () {
-    this.x += random(-1, 1);
-    this.y += random(-1, 1);
+    this.x += random(-this.speed, this.speed);
+    this.y += random(-this.speed, this.speed);
+	this.speed+=0.01;
+	
+	if(this.x>width || this.x<0){
+		this.x = width/2;
+	}
+	if(this.y>height || this.y<0){
+		this.y = height/2;
+	}
   }
 
   this.colorfly = function(){
