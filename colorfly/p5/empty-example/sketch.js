@@ -1,4 +1,4 @@
-var starNumber = 2000;
+var starNumber = 1;
 var stars = new Array;
 
 function setup() {
@@ -16,6 +16,28 @@ function draw() {
 
 }
 
+function keyPressed(){
+	switch(keyCode){
+		case UP_ARROW:
+			starNumber++;
+			stars[starNumber-1] = new Star;
+			break;
+		case DOWN_ARROW:
+			starNumber--;
+			break;
+		case LEFT_ARROW:
+			for(var i=0;i<starNumber;i++){
+				stars[i].speed--;
+			}
+			break;
+		case RIGHT_ARROW:
+			for(var i=0;i<starNumber;i++){
+				stars[i].speed++;
+			}
+			break;
+	}
+}
+
 function Star(){
   this.x = random(width);
   this.y = random(height);
@@ -28,7 +50,7 @@ function Star(){
   this.move = function () {
     this.x += random(-this.speed, this.speed);
     this.y += random(-this.speed, this.speed);
-	this.speed+=0.01;
+	//this.speed+=0.01;
 	
 	if(this.x>width || this.x<0){
 		this.x = width/2;
@@ -45,7 +67,7 @@ function Star(){
   }
 
   this.show = function(){
-    noStroke();
+    //noStroke();
     fill(this.redtone, this.greentone, this.bluetone);
     ellipse(this.x, this.y, this.weight, this.weight);
     this.move();
