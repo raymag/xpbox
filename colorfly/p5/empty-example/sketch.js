@@ -1,5 +1,7 @@
 var starNumber = 1;
 var stars = new Array;
+var binary_division = false;
+var goingdiv;
 
 function setup() {
   createCanvas(innerWidth, innerHeight);
@@ -10,6 +12,13 @@ function setup() {
 
 function draw() {
   background(22, 25, 50);
+  var div = random(500);
+  if(div>=2){
+	  goingdiv = true;
+  }
+  if(div<2){
+	  goingdiv = false;
+  }
   for(var i=0;i<starNumber;i++){
     stars[i].show();
   }
@@ -35,6 +44,9 @@ function keyPressed(){
 				stars[i].speed++;
 			}
 			break;
+		case ENTER:
+			binary_division = !binary_division;
+			break;
 	}
 }
 
@@ -57,6 +69,15 @@ function Star(){
 	}
 	if(this.y>height || this.y<0){
 		this.y = height/2;
+	}
+	
+	if(binary_division){
+			if(goingdiv){
+				stars[starNumber] = new Star;
+				stars[starNumber].x = this.x + random(-20, 20);
+				stars[starNumber].y = this.y + random(-20, 20);
+				starNumber++;
+		}
 	}
   }
 
