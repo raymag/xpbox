@@ -1,7 +1,9 @@
 var irons = [];
 var runspeed = 8;
-var ifafinidade = 0;
+var ifafinidade = 10;
 var naoafinidade = 5;
+var playing = false;
+var hearts = 5;
 function setup() {
 	createCanvas( (innerWidth), (innerHeight) );
 	player = new Student;
@@ -9,33 +11,49 @@ function setup() {
 
 function draw() {
 	background(22);
-	textSize(32);
-	fill(250);
-	text('IF-Afinidade:', width/7*5, height/10);
-	text((ifafinidade+'%'), width/7*5+200, height/10);
+	if(playing){
+		textSize(32);
+		fill(250);
+		text('IF-Afinidade:', width/7*5, height/10);
+		text((ifafinidade+'%'), width/7*5+200, height/10);
 	
-	text('Ritmo:', width/7*5, height/5);
-	text(int(runspeed), width/7*5+100, height/5);
+		text('Ritmo:', width/7*5, height/5);
+		text(int(runspeed), width/7*5+100, height/5);
 	
-	player.paint();
-	if( runspeed <= 8){
-		if( frameCount % int(random(80, 82)) == 0 ){
-			irons.push(new Iron);
+		player.paint();
+		if( runspeed <= 8){
+			if( frameCount % int(random(80, 82)) == 0 ){
+				irons.push(new Iron);
+			}
+		}
+		if (runspeed>8){
+			if(frameCount % int(random(20, 22)) == 0){
+				irons.push(new Iron);
+			}
+		}
+		for(var i=irons.length-1;i>=0;i--){
+			irons[i].paint();
+			if( irons[i].hits(player) ){
+				console.log('Grr');
+			}
+			if( irons[i].offscreen() ){
+				irons.splice(i, 1);
+			}
+		}
+		if(hearts<=0){
+			playing = false;
+			hearts = 5;
 		}
 	}
-	if (runspeed>8){
-		if(frameCount % int(random(20, 22)) == 0){
-			irons.push(new Iron);
-		}
-	}
-	for(var i=irons.length-1;i>=0;i--){
-		irons[i].paint();
-		if( irons[i].hits(player) ){
-			console.log('Grr');
-		}
-		if( irons[i].offscreen() ){
-			irons.splice(i, 1);
-		}
+	if(playing==false){
+		textSize(100);
+		fill(100, 150, 100, 250);
+		text('IF-Day', width*0.40, height*0.4);
+		fill(100, 100, 100, 250);
+		textSize(50);
+		text('Um ano no IF', width*0.4, height/2);
+		textSize(30);
+		text('Pressione Enter, ou Up para Jogar', width*0.01, height*0.95);
 	}
 }
 
@@ -43,9 +61,15 @@ function keyPressed(){
 	switch(keyCode){
 		case UP_ARROW:
 			player.jump();
+			if(playing==false){
+				playing=true;
+			}
 			break;
 		case ENTER:
 			player.jump();
+			if(playing==false){
+				playing=true;
+			}
 			break;
 	}
 }
@@ -87,6 +111,9 @@ function Student(){
 		}
 		if(ifafinidade>75){
 			this.greentone = 255;
+			if(ifafinidade>80 && frameCount%90==0){
+				hearts++;
+			}
 			if(runspeed<=15){
 				runspeed += 0.01;
 				if(runspeed>10){
@@ -102,6 +129,9 @@ function Student(){
 			this.redtone = 255;
 			if(runspeed>=3){
 				runspeed -= 0.01;
+			}
+			if(frameCount%30==0 && ifafinidade<=8){
+				hearts--;
 			}
 		}
 		
