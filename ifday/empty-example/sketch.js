@@ -30,27 +30,65 @@ function setup() {
 //FUNCAO DRAW ===================================================================>
 //=======================================================================>
 function draw() {
-	background(22);
+	//ESTADO DE JOGO
 	if(playing){
+		background(154, 211, 230);//DESENHA O CEU AZUL
+		noStroke();
+		//DESENHA AS NUVENS DO PLANO DE FUNDO
+		fill(227, 227, 227, 100);
+		ellipse(width*0.1, height*0.1, 400, 100);
+		ellipse(width*0.17, height*0.2, 430, 150);
+		ellipse(width*0.6, height*0.02, 400, 100);
+		ellipse(width*0.87, height*0.1, 300, 100);
+		ellipse(width*0.57, height*0.2, 430, 150);
+		//DESENHA O CENÁRIO DE FUNDO (MONTANHAS, MORROS, ETC)
+		fill(104, 140, 132);
+		ellipse(width*0.7, height, 1000, 800);
+		triangle(width*0.8, height, width, height*0.5, width*1.1, height);
+		triangle(-60, height, width*0.1, height/2, width*0.3, height);
+		fill(94, 130, 102);
+		triangle(-10, height, width*0.2, height/2, width*0.3, height);
+		triangle(width*0.8, height, width*0.9, height*0.3, width*1.1, height);
+		fill(104, 140, 132);
+		triangle(30, height, width*0.3, height/3, width*0.5, height);
+		fill(94, 130, 102);
+		triangle(width*0.3, height, width*0.3, height/3, width*0.5, height);
 		//INFORMACOES DE ESCANTEIO
 		textSize(32);
-		fill(250);
-		text('IF-Afinidade:', width/7*5, height/10);
+		fill(22);
+		text('Afinidade:', width/7*5, height/10);
 		text((ifafinidade+'%'), width/7*5+200, height/10);
 		text('Ritmo:', width/7*5, height/5);
 		text(int(runspeed), width/7*5+100, height/5);
+		text('Pontos: '+nota, width/7*5, height/4);
+		//RENDERIZA O CHAO
+		fill(150);
+		rect(0, height-20, width, 20);
 
 		player.paint();//DESENHA O JOGADOR
+		
+		
 		
 		//DESENHA OS PROJETEIS DISPARADOS PELO JOGADOR
 		for(var i=0;i<bullets.length;i++){
 			bullets[i].paint();
+			//ELIMINA OBJ BULLETS FORA DO CAMPO DE VISAO
 			if(bullets[i].offscreen()){
 				bullets.splice(i, 1);
 			}
-			//for(var j=0;j<provas.length;j++){
-			//	bullets[i].touching(provas[j]);
-			//}
+			//VERIFICA O TOQUE DO OBJ BULLET COM O OBJ AVALIACAO
+			try{
+				for(var j=0;j<provas.length-1;j++){
+					if(bullets[i].touching(provas[j])){
+						provas.splice(j, 1);//CASO VERDADEIRO, ELIMINA O OBJ AVALIACAO
+						nota++;
+						//SORTEA +1 HEART
+						if(random(20)<=10){
+							hearts++;
+						}
+					}
+				}
+			}catch{}
 		}
 		for(var i=0;i<provas.length;i++){
 			provas[i].paint();//DESENHA AS AVALIACOES
@@ -83,7 +121,6 @@ function draw() {
 			runspeed = 8;
 			ifafinidade = 10;
 			bulletspeed = 5;
-			nota = 0;
 			irons = [];
 			bullets = [];
 			provas = [];
@@ -97,15 +134,17 @@ function draw() {
 	}
 	//MENU DE JOGO
 	if(playing==false){
+		background(22);
 		textSize(100);
 		fill(100, 150, 100, 250);
-		text('IF-Day', width*0.40, height*0.4);
+		text('School-Days', width*0.3, height*0.4);
 		fill(100, 100, 100, 250);
 		textSize(50);
-		text('Um ano no IF', width*0.4, height/2);
+		text('A annos in schola', width*0.35, height/2);
 		textSize(30);
 		text('Pressione Enter para Jogar', width*0.01, height*0.95);
-		text('Score: '+score, width*0.46, height/2+60);
+		text('Pontos: '+nota, width*0.46, height/2+60);
+		//text('Score: '+score, width*0.46, height/2+60);
 	}
 }
 //FUNCAO KEYPRESSED ===============================================================>
@@ -120,6 +159,7 @@ function keyPressed(){
 			if(playing==false){
 				playing=true;
 				score = 0;
+				nota = 0;
 			}
 			break;
 		case 88:
@@ -161,9 +201,10 @@ function Studybullet(){
 		//obj = provas[obj];
 		if( (this.x+this.xsize) > obj.x ){
 			if( (this.y>obj.y) && (this.y+this.ysize<obj.y+obj.size) ){
-				console.log('TOCANDO');
+				return true
 			}
 		}
+		return false;
 	}
 }
 //OBJETO STUDENT (JOGADOR) ===================================================>
@@ -249,7 +290,8 @@ function Student(){
 				hearts--;
 			}
 		}
-
+		
+		stroke(22, 22, 22, 100);
 		fill(this.redtone, this.greentone, this.bluetone);
 		ellipse(this.x, this.y, this.weight, this.weight);
 		this.loop();
@@ -257,6 +299,8 @@ function Student(){
 		if(frameCount%300 == 0){
 			this.gunshot = runspeed;
 		}
+		fill(55, 55, 55, 100);
+		ellipse(this.x+(this.weight*0.4), this.y+(this.weight*0), 10, 20);
 	}
 }
 //OBJETO AVALIACAO (PROVA) ========================================================>
