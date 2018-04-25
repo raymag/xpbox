@@ -1,3 +1,8 @@
+//============================PROJETO--->IF-DAY<----===========================>
+//=========================IDEALIZADO-EM-23/04/2018============================>
+//==========================CARLOS=MAGNO=NASCIMENTO============================>
+//=============================================================================>
+
 //VARIAVEIS GLOBAIS ===========================================================>
 //=======================================================================>
 
@@ -32,14 +37,20 @@ function draw() {
 		fill(250);
 		text('IF-Afinidade:', width/7*5, height/10);
 		text((ifafinidade+'%'), width/7*5+200, height/10);
-
 		text('Ritmo:', width/7*5, height/5);
 		text(int(runspeed), width/7*5+100, height/5);
 
 		player.paint();//DESENHA O JOGADOR
 		
+		//DESENHA OS PROJETEIS DISPARADOS PELO JOGADOR
 		for(var i=0;i<bullets.length;i++){
-			bullets[i].paint();//DESENHA OS PROJETEIS DISPARADOS PELO JOGADOR
+			bullets[i].paint();
+			if(bullets[i].offscreen()){
+				bullets.splice(i, 1);
+			}
+			//for(var j=0;j<provas.length;j++){
+			//	bullets[i].touching(provas[j]);
+			//}
 		}
 		for(var i=0;i<provas.length;i++){
 			provas[i].paint();//DESENHA AS AVALIACOES
@@ -71,7 +82,11 @@ function draw() {
 			hearts = 5;
 			runspeed = 8;
 			ifafinidade = 10;
+			bulletspeed = 5;
+			nota = 0;
 			irons = [];
+			bullets = [];
+			provas = [];
 		}
 		
 		//GERA NOVAS PROVAS E AVALIACOES
@@ -118,17 +133,37 @@ function keyPressed(){
 //OBJETO STUDYBULLET (BALA) =================================================>
 //=======================================================================>
 function Studybullet(){
+	//CONFIGURACAO DO OBJ STUDYBULLET
 	this.x = player.x+(player.weight*0.9);
 	this.y = player.y+(player.weight*0.5);
 	this.xsize = 15;
 	this.ysize = 10;
-	this.move = function(){//ATUALIZA A POSICAO DO PROJETIL
+	//ATUALIZA A POSICAO DO PROJETIL
+	this.move = function(){
 		this.x+=bulletspeed;
 	}
-	this.paint = function(){//DESENHA O PROJETIL
+	//DESENHA O PROJETIL
+	this.paint = function(){
 		fill(25, 25, 250, 200);
 		rect(this.x, this.y, this.xsize, this.ysize);
 		this.move();
+	}
+	//VERIFICA SE OBJ STUDYBULLET ESTA FORA DO CAMPO DE VISAO
+	this.offscreen = function(){
+		if(this.x>width){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	//
+	this.touching = function(obj){
+		//obj = provas[obj];
+		if( (this.x+this.xsize) > obj.x ){
+			if( (this.y>obj.y) && (this.y+this.ysize<obj.y+obj.size) ){
+				console.log('TOCANDO');
+			}
+		}
 	}
 }
 //OBJETO STUDENT (JOGADOR) ===================================================>
@@ -241,6 +276,14 @@ function Avaliacao(){
 		fill(253, 106, 2, 200);
 		rect(this.x, this.y, this.size, this.size);
 		this.loop();
+	}
+	//VERIFICA SE OBJ Avaliacao ESTA FORA DO CAMPO DE VISAO
+	this.offscreen = function(){
+		if( (this.x+this.size)<0){
+			return true;
+		}else{
+			return false;
+		}
 	}
 }
 //OBJETO IRON (DISTRACOES) =============================================================>
