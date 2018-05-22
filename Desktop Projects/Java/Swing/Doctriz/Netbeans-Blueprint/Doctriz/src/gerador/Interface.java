@@ -39,13 +39,15 @@ public class Interface extends javax.swing.JFrame {
         btPath = new javax.swing.JButton();
         spQuantidade = new javax.swing.JSpinner();
         jLabel2 = new javax.swing.JLabel();
+        tfExt = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gerador de Documentos");
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel1.setText("Prefixo");
+        jLabel1.setText("Prefixo:");
 
         tfPrefixo.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         tfPrefixo.setText("arq");
@@ -64,6 +66,12 @@ public class Interface extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel2.setText("Quantidade:");
 
+        tfExt.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        tfExt.setText("html");
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel3.setText("Extenção:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -72,16 +80,19 @@ public class Interface extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(spQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(spQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btPath))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfPrefixo, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tfPrefixo, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfExt, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -91,12 +102,16 @@ public class Interface extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(tfPrefixo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(tfExt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(spQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btPath))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
@@ -109,11 +124,11 @@ public class Interface extends javax.swing.JFrame {
         int status = sel.fcPath.showOpenDialog(null);
         sel.setVisible(true);
         if(status == sel.fcPath.APPROVE_OPTION){
-            String path = sel.fcPath.getSelectedFile().getName();
+            //String path = sel.fcPath.getSelectedFile().getName();
             for(int i=1;i<=qnt;i++){
                 //System.out.println(String.valueOf(i));
-                File arq = new File(sel.fcPath.getSelectedFile()+"/"+tfPrefixo.getText()+i+".html");
-                System.out.println(sel.fcPath.getSelectedFile()+"/"+tfPrefixo.getText()+i+".html");
+                File arq = new File(sel.fcPath.getSelectedFile()+"/"+tfPrefixo.getText()+i+"."+tfExt.getText());
+                //System.out.println(sel.fcPath.getSelectedFile()+"/"+tfPrefixo.getText()+i+".html");
                 //System.out.println(spQuantidade.getValue());
                 try {
                     arq.getParentFile().mkdirs();
@@ -124,7 +139,11 @@ public class Interface extends javax.swing.JFrame {
             }
             sel.setVisible(false);
             sel.dispose();
-            JOptionPane.showMessageDialog(null, path);
+            JOptionPane.showMessageDialog(null, "Sucesso.");
+        }
+        else if(status == sel.fcPath.CANCEL_OPTION){
+            sel.setVisible(false);
+            sel.dispose();
         }
     }//GEN-LAST:event_btPathActionPerformed
 
@@ -167,7 +186,9 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JButton btPath;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JSpinner spQuantidade;
+    private javax.swing.JTextField tfExt;
     private javax.swing.JTextField tfPrefixo;
     // End of variables declaration//GEN-END:variables
 }

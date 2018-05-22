@@ -32,6 +32,7 @@ public class Selecionar extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        fcPath.setApproveButtonText("Gerar");
         fcPath.setCurrentDirectory(new java.io.File("C:\\Users\\Mag\\Desktop"));
         fcPath.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
         fcPath.addActionListener(new java.awt.event.ActionListener() {
@@ -69,7 +70,7 @@ public class Selecionar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void fcPathActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fcPathActionPerformed
-        System.out.println("click");
+        //
     }//GEN-LAST:event_fcPathActionPerformed
 
     /**
