@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author info2
+ * @author raymag
  */
 public class Interface extends javax.swing.JFrame {
 
@@ -22,6 +22,7 @@ public class Interface extends javax.swing.JFrame {
      */
     public Interface() {
         initComponents();
+        spQuantidade.setValue(1);
     }
 
     /**
@@ -33,7 +34,6 @@ public class Interface extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btGerar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         tfPrefixo = new javax.swing.JTextField();
         btPath = new javax.swing.JButton();
@@ -44,17 +44,15 @@ public class Interface extends javax.swing.JFrame {
         setTitle("Gerador de Documentos");
         setResizable(false);
 
-        btGerar.setBackground(new java.awt.Color(112, 204, 112));
-        btGerar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        btGerar.setText("Gerar");
-
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText("Prefixo");
 
         tfPrefixo.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        tfPrefixo.setText("arq");
 
+        btPath.setBackground(new java.awt.Color(102, 102, 255));
         btPath.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        btPath.setText("Local");
+        btPath.setText("Gerar Em");
         btPath.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btPathActionPerformed(evt);
@@ -73,19 +71,17 @@ public class Interface extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btGerar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(0, 0, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(spQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btPath))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(tfPrefixo, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(spQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btPath))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfPrefixo, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -100,9 +96,7 @@ public class Interface extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(spQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btPath))
-                .addGap(18, 18, 18)
-                .addComponent(btGerar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -111,19 +105,22 @@ public class Interface extends javax.swing.JFrame {
 
     private void btPathActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPathActionPerformed
         Selecionar sel = new Selecionar();
-        
+        int qnt = (int) spQuantidade.getValue();
         int status = sel.fcPath.showOpenDialog(null);
         sel.setVisible(true);
         if(status == sel.fcPath.APPROVE_OPTION){
             String path = sel.fcPath.getSelectedFile().getName();
-            File arq = new File(sel.fcPath.getSelectedFile()+"/"+tfPrefixo.getText()+".html");
-            System.out.println(sel.fcPath.getSelectedFile()+"/"+tfPrefixo.getText()+".html");
-            try {
-                arq.getParentFile().mkdirs();
-                arq.createNewFile();
-                System.out.println("KKKKKKKKkk");
-            } catch (IOException ex) {
-                Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+            for(int i=1;i<=qnt;i++){
+                //System.out.println(String.valueOf(i));
+                File arq = new File(sel.fcPath.getSelectedFile()+"/"+tfPrefixo.getText()+i+".html");
+                System.out.println(sel.fcPath.getSelectedFile()+"/"+tfPrefixo.getText()+i+".html");
+                //System.out.println(spQuantidade.getValue());
+                try {
+                    arq.getParentFile().mkdirs();
+                    arq.createNewFile();
+                } catch (IOException ex) {
+                    Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             sel.setVisible(false);
             sel.dispose();
@@ -167,7 +164,6 @@ public class Interface extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btGerar;
     private javax.swing.JButton btPath;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
