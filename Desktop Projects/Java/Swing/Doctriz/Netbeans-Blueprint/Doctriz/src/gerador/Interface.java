@@ -5,8 +5,13 @@
  */
 package gerador;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -14,6 +19,7 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author raymag
+ * Versão 1.5
  */
 public class Interface extends javax.swing.JFrame {
 
@@ -124,6 +130,7 @@ public class Interface extends javax.swing.JFrame {
         int status = sel.fcPath.showOpenDialog(null);
         sel.setVisible(true);
         if(status == sel.fcPath.APPROVE_OPTION){
+            sel.setVisible(false);
             //String path = sel.fcPath.getSelectedFile().getName();
             for(int i=1;i<=qnt;i++){
                 //System.out.println(String.valueOf(i));
@@ -133,11 +140,26 @@ public class Interface extends javax.swing.JFrame {
                 try {
                     arq.getParentFile().mkdirs();
                     arq.createNewFile();
+                    if(tfExt.getText().equals("html")){
+                        BufferedWriter pen = new BufferedWriter(new FileWriter(sel.fcPath.getSelectedFile()+"/"+tfPrefixo.getText()+i+"."+tfExt.getText()));
+                        pen.append("<!DOCTYPE html>\n<html>"
+                                + "<head>\n<title>"+tfPrefixo.getText()+i+"</title>\n</head>"
+                                + "\n<body>\n</body>\n</html>");
+                        pen.close();
+                    }
+                    if(tfExt.getText().equals("php")){
+                        BufferedWriter pen = new BufferedWriter(new FileWriter(sel.fcPath.getSelectedFile()+"/"+tfPrefixo.getText()+i+"."+tfExt.getText()));
+                        pen.append("<!DOCTYPE html>\n<html>");
+                        pen.append("<head>\n<title>"+tfPrefixo.getText()+i+"</title>\n</head>\n<body>\n<?php"
+                                + "\n?>\n</body>\n");
+                        pen.append("</html>");
+                        pen.close();
+                    }
                 } catch (IOException ex) {
                     Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            sel.setVisible(false);
+           // sel.setVisible(false);
             sel.dispose();
             JOptionPane.showMessageDialog(null, "Sucesso.");
         }
