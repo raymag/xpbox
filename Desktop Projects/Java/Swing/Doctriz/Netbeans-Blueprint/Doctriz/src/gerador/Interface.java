@@ -8,6 +8,7 @@ package gerador;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -47,6 +48,7 @@ public class Interface extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         tfExt = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        btModel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gerador de Documentos");
@@ -78,6 +80,15 @@ public class Interface extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel3.setText("Extenção:");
 
+        btModel.setBackground(new java.awt.Color(147, 183, 183));
+        btModel.setText("Customizar Modelo");
+        btModel.setActionCommand("Customizar Modelo");
+        btModel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btModelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -85,6 +96,7 @@ public class Interface extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btModel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -117,7 +129,9 @@ public class Interface extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(spQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btPath))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btModel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -169,6 +183,25 @@ public class Interface extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btPathActionPerformed
 
+    private void btModelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModelActionPerformed
+        String fileModel = tfExt.getText();
+        File arq = new File("models/"+fileModel+".txt");
+        if(arq.exists()){
+            System.out.println("existe");
+            
+        }else{
+            System.out.println("inexistente");
+            System.out.println("models/"+fileModel+".txt");
+            try {
+                PrintWriter pen = new PrintWriter("models/"+fileModel+".txt");
+                pen.close();
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+    }//GEN-LAST:event_btModelActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -205,6 +238,7 @@ public class Interface extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btModel;
     private javax.swing.JButton btPath;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
