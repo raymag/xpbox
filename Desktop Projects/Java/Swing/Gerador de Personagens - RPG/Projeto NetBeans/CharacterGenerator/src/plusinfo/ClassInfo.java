@@ -30,7 +30,19 @@ public class ClassInfo extends javax.swing.JFrame {
     String rangerInfo = "Indivíduos desta classe possuem as habilidades de um grande caçador. São ágeis, versáteis, "
             + "astutos e resilientes. Dominam tanto o uso de lâminas curtas quanto ao uso de armas de disparo. Compreendem técnicas de perseguição, "
             + "e sabem como sobreviver em locais hostís e projetar estratégias e planos de ação.";
-
+    String clerigaInfo = "Clérigos são indivíduos que utilizam de seu Chi, preces e fé para tanto abençoar quanto "
+            + "amaldiçõar outros seres. Com a capacidade de curar e abençoar seus aliados, ao mesmo tempo que conjuram"
+            + " pragas e maldições em seus inimigos, os clérigos são louváveis aliados no campo de batalha e podem"
+            + " se tornar árduos oponentes.";
+/*
+Clériga
+Barda
+Fantasma
+Necromante
+Xamã
+Domador de Bestas
+Feiticeira
+*/
     /**
      * Creates new form ClassInfo
      */
@@ -68,7 +80,7 @@ public class ClassInfo extends javax.swing.JFrame {
         });
 
         cbClass.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        cbClass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Guerreira", "Ladina", "Mago", "Druida", "Paladina", "Ranger" }));
+        cbClass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Guerreira", "Ladina", "Mago", "Druida", "Paladina", "Ranger", "Clériga" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -120,6 +132,9 @@ public class ClassInfo extends javax.swing.JFrame {
         }
         if(myClass=="Ranger"){
             lbClass.setText("<html>"+rangerInfo);
+        }
+        if(myClass=="Clériga"){
+            lbClass.setText("<html>"+clerigaInfo);
         }
     }//GEN-LAST:event_btClassActionPerformed
 

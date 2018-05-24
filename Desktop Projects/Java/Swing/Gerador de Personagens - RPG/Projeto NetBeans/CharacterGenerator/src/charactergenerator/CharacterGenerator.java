@@ -475,7 +475,7 @@ public class CharacterGenerator extends javax.swing.JFrame {
         });
 
         cbClass.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        cbClass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Guerreira", "Ladina", "Mago", "Druida", "Paladina", "Ranger", "Clériga", "Barda", "Fantasma", "Necromante", "Xamã", "Domador de Bestas" }));
+        cbClass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Guerreira", "Ladina", "Mago", "Druida", "Paladina", "Ranger", "Clériga", "Barda", "Fantasma", "Necromante", "Xamã", "Domador de Bestas", "Feiticeira" }));
         cbClass.setToolTipText("");
         cbClass.setEnabled(false);
         cbClass.addActionListener(new java.awt.event.ActionListener() {
