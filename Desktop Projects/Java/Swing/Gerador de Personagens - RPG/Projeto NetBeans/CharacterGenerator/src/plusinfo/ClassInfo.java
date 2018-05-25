@@ -34,22 +34,24 @@ public class ClassInfo extends javax.swing.JFrame {
             + "amaldiçõar outros seres. Com a capacidade de curar e abençoar seus aliados, ao mesmo tempo que conjuram"
             + " pragas e maldições em seus inimigos, os clérigos são louváveis aliados no campo de batalha e podem"
             + " se tornar árduos oponentes.";
-    String bardaInfo = "Bardos são guerreiros que batalham, tanto na arte, quanto no calor da batalha."
-            + " Carregam espadas, machados, e diversas outras armas, mas sempre portam consigo a sua maior arma: O dom da arte."
-            + " A capacidade artística e guerreira de um bardo faz com que estes indivíduos possam influenciar as emoções das"
-            + " outras pessoas. Declarando poemas e cantarolando canções, bardos podem contagiar e empolgar seus aliados enquanto"
-            + " duelam de espadas.";
-    String fantasmaInfo = " Nas longíquas terras da Pangeia... Há relatos sobre aparições sobrenaturais, talvez demoniácas, de "
-            + "um ser fantasmagórico e cruel. Dizem que surgem detrás de suas vítimas na penumbra da noite, ou na luz do luar."
-            + " E na velocidade de um suspiro, ceifam a vida de suas pobres almas e desaparecem súbitamente no assobiar do vento.";
-    String necromanteInfo = " Há uma lenda que conta a história de uma antiga ceita... Uma ordem de sábios que descobriram um modo "
-            + "de controlar e trocar vidas para atingir um poder obscuro e fenomenal. Controlando mortos e proliferando maldições, lá"
-            + "nas terras de Laurássia eles são chamados de... Necromantes.";
+    String bardaInfo = "Mestres da Guerra, armados com poesia e aço. São conhecidos por serem excelentes combatentes,"
+            + "por terem grande experiência prática e por sua enorme capacidade artística. Podem matar dezenas de homens"
+            + " e demais criaturas com uma espada na mão, mas sua maior arma está bem acima disto. Com ela Bardos são "
+            + "capazes de trazer ânimo aos seus aliados, de contagiar pessoas e de lutar com música. Podem travar"
+            + " batalhas, arquitetar planos e de lutar guerra, todavía, a sua arma suprema será eternamente a Arte. ";
+    String fantasmaInfo = "Nas longíquas e gélidas terras de Pangeia. Os trovadores cantam e declamam contos sobre "
+            + "fantasmas. Aparições demoniácas e fantasmagóricas, que surgem súbitamente detrás das presas. E "
+            + "quase tão efêmero como um estalar de dedos, ceifam suas vidas e desaparecem no cantarolar dos ventos.";
+    String necromanteInfo = "Dizem as lendas, que há alguns séculos, uma ordem secreta de sábios praticantes de magia"
+            + " negra, tiveram acesso a um poder grandioso em troca de seu bem mais precioso. Esse poder obscuro, consumiu"
+            + " a ordem, os levando a destruição. Mas as lendas contam que esse poder ainda vive, em posse dos "
+            + "destestáveis praticantes da magia fúnebre, os infaustos Necromantes.";
     String xamaInfo = "";
     String domadorInfo = "";
-    String feiticeiraInfo = "Alguns contam... Num pequeno vilarejo, a taxa de violência e abuso dos homens contra as mulheres era altíssima."
-            + " De fato, nesta época, os homens é quem dominam. São eles quem segura o cabo do machado e rumam para batalha.";
-    
+    String feiticeiraInfo = "";
+    String mongeInfo = "";
+    String ilusionistaInfo = "";
+    String mentalistaInfo = "";
     /**
      * Creates new form ClassInfo
      */
@@ -88,11 +90,6 @@ public class ClassInfo extends javax.swing.JFrame {
 
         cbClass.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         cbClass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Guerreira", "Ladina", "Mago", "Druida", "Paladina", "Ranger", "Clériga", "Barda", "Fantasma", "Necromante" }));
-        cbClass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbClassActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -158,10 +155,6 @@ public class ClassInfo extends javax.swing.JFrame {
             lbClass.setText("<html>"+necromanteInfo);
         }
     }//GEN-LAST:event_btClassActionPerformed
-
-    private void cbClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbClassActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbClassActionPerformed
 
     /**
      * @param args the command line arguments
