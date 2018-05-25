@@ -17,9 +17,9 @@ import java.util.logging.Logger;
  */
 public class ConnectionFactory {
     public Connection getConexao() throws SQLException{
-        String url = "jdbc:mysql://localhost:3306/estudojdbc";
+        String url = "jdbc:mysql://localhost:3306/javajdbc";
         String user = "root";
-        String passwd = "";
+        String passwd = "root";
         try {
             Connection connection = DriverManager.getConnection(url, user, passwd);
             return connection;

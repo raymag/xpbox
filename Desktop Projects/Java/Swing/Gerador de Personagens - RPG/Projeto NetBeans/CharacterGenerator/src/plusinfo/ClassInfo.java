@@ -34,15 +34,22 @@ public class ClassInfo extends javax.swing.JFrame {
             + "amaldiçõar outros seres. Com a capacidade de curar e abençoar seus aliados, ao mesmo tempo que conjuram"
             + " pragas e maldições em seus inimigos, os clérigos são louváveis aliados no campo de batalha e podem"
             + " se tornar árduos oponentes.";
-/*
-Clériga
-Barda
-Fantasma
-Necromante
-Xamã
-Domador de Bestas
-Feiticeira
-*/
+    String bardaInfo = "Bardos são guerreiros que batalham, tanto na arte, quanto no calor da batalha."
+            + " Carregam espadas, machados, e diversas outras armas, mas sempre portam consigo a sua maior arma: O dom da arte."
+            + " A capacidade artística e guerreira de um bardo faz com que estes indivíduos possam influenciar as emoções das"
+            + " outras pessoas. Declarando poemas e cantarolando canções, bardos podem contagiar e empolgar seus aliados enquanto"
+            + " duelam de espadas.";
+    String fantasmaInfo = " Nas longíquas terras da Pangeia... Há relatos sobre aparições sobrenaturais, talvez demoniácas, de "
+            + "um ser fantasmagórico e cruel. Dizem que surgem detrás de suas vítimas na penumbra da noite, ou na luz do luar."
+            + " E na velocidade de um suspiro, ceifam a vida de suas pobres almas e desaparecem súbitamente no assobiar do vento.";
+    String necromanteInfo = " Há uma lenda que conta a história de uma antiga ceita... Uma ordem de sábios que descobriram um modo "
+            + "de controlar e trocar vidas para atingir um poder obscuro e fenomenal. Controlando mortos e proliferando maldições, lá"
+            + "nas terras de Laurássia eles são chamados de... Necromantes.";
+    String xamaInfo = "";
+    String domadorInfo = "";
+    String feiticeiraInfo = "Alguns contam... Num pequeno vilarejo, a taxa de violência e abuso dos homens contra as mulheres era altíssima."
+            + " De fato, nesta época, os homens é quem dominam. São eles quem segura o cabo do machado e rumam para batalha.";
+    
     /**
      * Creates new form ClassInfo
      */
@@ -80,7 +87,12 @@ Feiticeira
         });
 
         cbClass.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        cbClass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Guerreira", "Ladina", "Mago", "Druida", "Paladina", "Ranger", "Clériga" }));
+        cbClass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Guerreira", "Ladina", "Mago", "Druida", "Paladina", "Ranger", "Clériga", "Barda", "Fantasma", "Necromante" }));
+        cbClass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbClassActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -136,7 +148,20 @@ Feiticeira
         if(myClass=="Clériga"){
             lbClass.setText("<html>"+clerigaInfo);
         }
+        if(myClass=="Barda"){
+            lbClass.setText("<html>"+bardaInfo);
+        }
+        if(myClass=="Fantasma"){
+            lbClass.setText("<html>"+fantasmaInfo);
+        }
+        if(myClass=="Necromante"){
+            lbClass.setText("<html>"+necromanteInfo);
+        }
     }//GEN-LAST:event_btClassActionPerformed
+
+    private void cbClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbClassActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbClassActionPerformed
 
     /**
      * @param args the command line arguments
