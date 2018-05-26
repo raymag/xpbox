@@ -46,12 +46,29 @@ public class ClassInfo extends javax.swing.JFrame {
             + " negra, tiveram acesso a um poder grandioso em troca de seu bem mais precioso. Esse poder obscuro, consumiu"
             + " a ordem, os levando a destruição. Mas as lendas contam que esse poder ainda vive, em posse dos "
             + "destestáveis praticantes da magia fúnebre, os infaustos Necromantes.";
-    String xamaInfo = "";
-    String domadorInfo = "";
-    String feiticeiraInfo = "";
-    String mongeInfo = "";
-    String ilusionistaInfo = "";
-    String mentalistaInfo = "";
+    String domadorInfo = " Muitos possuem uma tremenda afinidade para o domínio das lâminas, outro possuem afinidade para o domínio do"
+            + " corpo e até da magia. Mas também existem aqueles, que possuem uma tremenda afinidade com o reino das bestas. Com uma grande"
+            + " empatia, e com quase uma conexão mental, os Domadores de Bestas portam o poder para dominar e ordenar as poderosas bestas "
+            + "e criaturas míticas.";
+    String feiticeiraInfo = "As lendas dizem que... Há muito tempo, em um vilarejo conhecido por ter ótimos soldados e por receber "
+            + "e confortar inúmeros guerreiros e homens de suas árduas jornadas, foi totalmente dizimada por um grupo 6 mulheres."
+            + " A cidade era famosa por seus homens.. O abuso e opressão as mulheres naquela região era bem maiores que o normal. "
+            + "O estupro e abuso com a população feminina não era só normal, era rotina. Logo, as mulheres começaram a se rebelarem,"
+            + "e certa noite.. Um grupo de apenas 6 mulheres usaram uma magia terrível para libertar a cidade. Mas aquele poder era "
+            + "grande demais pra elas, e acabaram dizimando toda a região e por fim tiraram as próprias vidas. Alguns ousam dizer que "
+            + "descedentes destas mulheres ainda vivem... Ainda se vingando dos homens, são muitas vezes chamadas de Feiticeiras, ou "
+            + "melhor 'Imperatrizes'.";
+    String mongeInfo = "Estes indivíduos buscam a iluminação espiritual e libertação das limitações terrenas. Com isso, passam por "
+            + "rígidos treinamentos para fortalecer tanto o seu corpo quanto sua mente. Criando resistência física e resiliência mental,"
+            + "  o corpo de um Monge é sem dúvida uma arma mortal.";
+    String ilusionistaInfo = "Ilusionistas possuem uma aura maligna, certamente obscura. Quase ninguém os querem por perto, já que"
+            + " a fonte de seus poderes consiste na arte da enganação, ilusão e persuasão. Com um deles por perto, nunca se sabe se "
+            + "o que você vê e sente é real ou não. São bons aliados mas também são traídores em potencial.";
+    String mentalistaInfo = "Os sábios dizem que tudo que há, ou é matéria ou é energia. Logo, estes dois componentes estão "
+            + "por todo lugar, e estão intrísicamente ligados. E é justamente a canalização, absorção e controle de algumas das formas "
+            + "da energia que Mentalistas se tornam tão poderosos. São capazes de canalizar a energia ao redor, ou de si mesmos para "
+            + "criar um campo de força ou lâmina invisível. Podem fortificar seus corpos e dispararem densas ondas de energia."
+            + "Mentalistas são uma mão na roda, entretanto, também podem ser a última coisa que você verá.";
     /**
      * Creates new form ClassInfo
      */
@@ -89,7 +106,7 @@ public class ClassInfo extends javax.swing.JFrame {
         });
 
         cbClass.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        cbClass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Guerreira", "Ladina", "Mago", "Druida", "Paladina", "Ranger", "Clériga", "Barda", "Fantasma", "Necromante" }));
+        cbClass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Guerreira", "Ladina", "Mago", "Druida", "Paladina", "Ranger", "Clériga", "Barda", "Fantasma", "Necromante", "Domador de Bestas", "Feiticeira", "Monge", "Ilusionista", "Mentalista" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,8 +132,8 @@ public class ClassInfo extends javax.swing.JFrame {
                     .addComponent(btClass)
                     .addComponent(cbClass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lbClass, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addComponent(lbClass, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
@@ -153,6 +170,21 @@ public class ClassInfo extends javax.swing.JFrame {
         }
         if(myClass=="Necromante"){
             lbClass.setText("<html>"+necromanteInfo);
+        }
+        if(myClass=="Domador de Bestas"){
+            lbClass.setText("<html>"+domadorInfo);
+        }
+        if(myClass=="Feiticeira"){
+            lbClass.setText("<html>"+feiticeiraInfo);
+        }
+        if(myClass=="Monge"){
+            lbClass.setText("<html>"+mongeInfo);
+        }
+        if(myClass=="Ilusionista"){
+            lbClass.setText("<html>"+ilusionistaInfo);
+        }
+        if(myClass=="Mentalista"){
+            lbClass.setText("<html>"+mentalistaInfo);
         }
     }//GEN-LAST:event_btClassActionPerformed
 
