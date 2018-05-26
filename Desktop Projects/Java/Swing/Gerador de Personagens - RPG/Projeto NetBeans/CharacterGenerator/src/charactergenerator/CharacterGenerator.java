@@ -20,7 +20,7 @@ public class CharacterGenerator extends javax.swing.JFrame {
     boolean chooseBreed = false;
     boolean chooseClass = false;
     int breedMaxIndex = 3; //Max Index of Breeds List
-    int classMaxIndex = 6; //Max Index of Classes List
+    int classMaxIndex = 15; //Max Index of Classes List
     int rMaxIndex = 9; //Max Index of HomeLands List
     String r[] = {"Ali Hana", "Duoss", "Qocient", "Los Andes",
         "Monte Carlo", "F. Atalante", "Egito", "Kanas", "Brasília", "Tryna"};
@@ -172,11 +172,29 @@ public class CharacterGenerator extends javax.swing.JFrame {
             case 0: //Guerreira
                 cbSkills.addItem("Dilacerar");
                 skills.add("Dilacerar");
+                cbSkills.addItem("Resistir");
+                skills.add("Resistir");
+                cbSkills.addItem("Neutralizar");//maos livres
+                skills.add("Neutralizar");
+                cbSkills.addItem("Liderar");//buff
+                skills.add("Liderar");
+                cbSkills.addItem("Spinner Blade");//POR DEMACIA!
+                skills.add("Spinner Blade");
             case 1: //Ladina
                 cbSkills.addItem("Esfaquear");
                 skills.add("Esfaquear");
                 cbSkills.addItem("Furtivo");
                 skills.add("Furtivo");
+                cbSkills.addItem("Furtar");
+                skills.add("Furtar");
+                cbSkills.addItem("Mentir");
+                skills.add("Mentir");
+                cbSkills.addItem("Persuadir");
+                skills.add("Persuadir");
+                cbSkills.addItem("Apunhalar");
+                skills.add("Apunhalar");
+                cbSkills.addItem("Acrobata");
+                skills.add("Acrobata");
                 //System.out.println(skills.get(0));
                 break;
             case 2: //Mago
@@ -184,6 +202,12 @@ public class CharacterGenerator extends javax.swing.JFrame {
                 skills.add("Controlar Orb");
                 cbSkills.addItem("AtivarOrb");
                 skills.add("AtivarOrb");
+                cbSkills.addItem("Maxmizar");
+                skills.add("Maximizar");
+                cbSkills.addItem("Concentrar-Chi");
+                skills.add("Concentrar-Chi");
+                cbSkills.addItem("Duo");//Usar dois orbs de mesma classe
+                skills.add("Duo");
                 break;
             case 3: //Druida
                 cbSkills.addItem("Esfaquear");
@@ -192,18 +216,138 @@ public class CharacterGenerator extends javax.swing.JFrame {
                 skills.add("Revitalizar");
                 cbSkills.addItem("FalcaoFloresta");
                 skills.add("FalcaoFloresta");
+                cbSkills.addItem("Germinar");//Se converte em arvore
+                skills.add("Germinar");//se cura
+                cbSkills.addItem("Drenar Natureza");//Drena a energia
+                skills.add("Drenar Natureza");//Da mae terra para maximizar poder
+                cbSkills.addItem("Convocar Animais");
+                skills.add("Convocar Animais");
+                cbSkills.addItem("Fogo Solar");//queima
+                skills.add("Fogo Solar");
+                cbSkills.addItem("Fogo Lunar");//blind
+                skills.add("Fogo Lunar");
                 break;
             case 4://Paladina, etc;
                 cbSkills.addItem("Dilacerar");
                 skills.add("Dilacerar");
                 cbSkills.addItem("Purificar");
                 skills.add("Purificar");
+                cbSkills.addItem("Excalibur");//Espada de Luz
+                skills.add("Excalibur");
+                cbSkills.addItem("Iluminado");//aumenta todos os status
+                skills.add("Iluminado");//aplica cura constante
                 break;
             case 5://Ranger
                 cbSkills.addItem("Esfaquear");
                 skills.add("Esfaquear");
                 skills.add("Disparar Flecha");
                 cbSkills.addItem("Disparar Flecha");
+                cbSkills.addItem("Rastrear");
+                skills.add("Rastrear");
+                cbSkills.addItem("Aplicar Alvo");//+precisao
+                skills.add("Aplicar Alvo");
+                cbSkills.addItem("Neutralizar");
+                skills.add("Neutralizar");
+            case 6://Clériga
+                cbSkills.addItem("Purificar");
+                skills.add("Purificar");
+                cbSkills.addItem("Amaldiçoar");
+                skills.add("Amaldiçoar");
+                cbSkills.addItem("Luz do Deserto");
+                skills.add("Luz do Deserto");
+                cbSkills.addItem("Noite da Tormenta");//convoca tempestada
+                skills.add("Noite da Tormaneta");
+                cbSkills.addItem("Praga do Gato Negro");//azar
+                skills.add("Praga do Gato Negro");
+                break;
+            case 7://Barda
+                cbSkills.addItem("Dilacerar");
+                skills.add("Dilacerar");
+                cbSkills.addItem("Inspirar");//Depende do instrumento
+                skills.add("Inspirar");
+                cbSkills.addItem("Contagiar");
+                skills.add("Contagiar");
+                cbSkills.addItem("Cantiga Triste");
+                skills.add("Cantida Triste");
+                cbSkills.addItem("Rompe Tormentas");//Golpe de Animo
+                skills.add("Rompe Tormentas");
+                break;
+            case 8://Fantasma, muda parcialmente as propriedades de seu corpo
+                cbSkills.addItem("Esfaquear");
+                skills.add("Esfaquear");
+                cbSkills.addItem("Transparecer");//Luz visível passa
+                skills.add("Transparecer");//Mas enxerga em infra-vermelho
+                cbSkills.addItem("Infra-Vermelho");
+                skills.add("Infra-Vermelho");
+                break;
+            case 9://Necromante
+                cbSkills.addItem("Dark FireBall");//Fireball roxa/negra
+                skills.add("Dark FireBall");
+                cbSkills.addItem("Vampire Fangs");//Presas de vampiro, hp em mp
+                skills.add("Vampire Fangs");
+                cbSkills.addItem("Summon Undead");//Convocar os mortos
+                skills.add("Summon Undead");
+                break;
+            case 10://Domador
+                cbSkills.addItem("Whipping");//Chicotada
+                skills.add("Whipping");
+                cbSkills.addItem("Disparar Flecha");
+                skills.add("Disparar Flecha");
+                cbSkills.addItem("Acalmar Fera");
+                skills.add("Acalmar Fera");
+                cbSkills.addItem("Seduzir Besta");
+                skills.add("Seduzir Besta");
+                cbSkills.addItem("Coleira da Besta");
+                skills.add("Coleira da Besta");
+                cbSkills.addItem("Elo Espiritual");
+                skills.add("Elo Espiritual");
+                cbSkills.addItem("Detectar Besta");
+                skills.add("Detectar Besta");
+                break;
+            case 11://Feiticeira, +forte c/ homens
+                cbSkills.addItem("Feline Claw");//Ataca com garras, unhas
+                skills.add("Feline Claw");
+                cbSkills.addItem("Death Kiss");//Drena energia vital
+                skills.add("Death Kiss");
+                cbSkills.addItem("Seduzir");//Acalma, Baixa a guarda do alvo
+                skills.add("Seduzir");
+                cbSkills.addItem("Induzir");//Faz sugestões a homens seduzidos (teste facil)
+                skills.add("Induzir");
+                cbSkills.addItem("Imperatriz");//(Teste HARDCORE) que torna homens seduzidos escravos
+                skills.add("Imperatriz");
+                cbSkills.addItem("Grãos-Ocitocina");//Chance de fazer homens se apaixonarem
+                skills.add("Grãos-Ocitocina");
+                cbSkills.addItem("Death Fangs"); //Em um ato de amor, arranca as veias e tendoes do pescoço do alvo
+                skills.add("Death Fangs");
+                break;
+            case 12://Monge
+                break;
+            case 13://Ilusionista
+                cbSkills.addItem("Esfaquear");
+                skills.add("Esfaquear");
+                cbSkills.addItem("Não-Está-Aqui");
+                skills.add("Não-Está-Aqui");
+                cbSkills.addItem("Fingir-Morte");
+                skills.add("Fingir-Morte");
+                cbSkills.addItem("Assustar");
+                skills.add("Assustar");
+                cbSkills.addItem("Seduzir");//c/ sonhos
+                skills.add("Seduzir");
+                cbSkills.addItem("Dream Door");
+                skills.add("Dream Door");
+                break;
+            case 14://Mentalista
+                cbSkills.addItem("Canalizar");
+                skills.add("Canalizar");
+                cbSkills.addItem("Lâmina-Invisível");
+                skills.add("Lâmina-Invisível");
+                cbSkills.addItem("Campo de Força");
+                skills.add("Campo de Força");
+                cbSkills.addItem("Fortificar");
+                skills.add("Fortificar");
+                cbSkills.addItem("Invisible Pulse");
+                skills.add("Invisible Pulse");
+                break;
             default://Guerreira, etc;
                 /*cbSkills.addItem("Dilacerar");
                 skills.add("Dilacerar");*/
@@ -475,7 +619,7 @@ public class CharacterGenerator extends javax.swing.JFrame {
         });
 
         cbClass.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        cbClass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Guerreira", "Ladina", "Mago", "Druida", "Paladina", "Ranger", "Clériga", "Barda", "Fantasma", "Necromante", "Xamã", "Domador de Bestas", "Feiticeira" }));
+        cbClass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Guerreira", "Ladina", "Mago", "Druida", "Paladina", "Ranger", "Clériga", "Barda", "Fantasma", "Necromante", "Domador de Bestas", "Feiticeira", "Monge", "Ilusionista", "Mentalista" }));
         cbClass.setToolTipText("");
         cbClass.setEnabled(false);
         cbClass.addActionListener(new java.awt.event.ActionListener() {
