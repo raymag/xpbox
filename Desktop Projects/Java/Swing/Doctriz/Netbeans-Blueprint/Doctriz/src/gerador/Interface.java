@@ -81,8 +81,8 @@ public class Interface extends javax.swing.JFrame {
         jLabel3.setText("Extenção:");
 
         btModel.setBackground(new java.awt.Color(147, 183, 183));
+        btModel.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         btModel.setText("Customizar Modelo");
-        btModel.setActionCommand("Customizar Modelo");
         btModel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btModelActionPerformed(evt);
@@ -149,28 +149,41 @@ public class Interface extends javax.swing.JFrame {
             for(int i=1;i<=qnt;i++){
                 //System.out.println(String.valueOf(i));
                 File arq = new File(sel.fcPath.getSelectedFile()+"/"+tfPrefixo.getText()+i+"."+tfExt.getText());
+                String path = sel.fcPath.getSelectedFile()+"/"+tfPrefixo.getText()+i+"."+tfExt.getText();
                 //System.out.println(sel.fcPath.getSelectedFile()+"/"+tfPrefixo.getText()+i+".html");
                 //System.out.println(spQuantidade.getValue());
                 try {
                     arq.getParentFile().mkdirs();
                     arq.createNewFile();
-                    if(tfExt.getText().equals("html")){
+                    File doc = new File(tfExt.getText()+".txt");
+                    String model;
+                    try (BufferedReader modelReader = new BufferedReader(new FileReader(doc))) {
+                        model = "";
+                        while(modelReader.ready()){
+                            model += " "+modelReader.readLine();
+                        }
+                    }
+                    try (BufferedWriter pen = new BufferedWriter(new FileWriter(path))) {
+                        pen.append(model);
+                        /*if(tfExt.getText().equals("html")){
                         BufferedWriter pen = new BufferedWriter(new FileWriter(sel.fcPath.getSelectedFile()+"/"+tfPrefixo.getText()+i+"."+tfExt.getText()));
                         pen.append("<!DOCTYPE html>\n<html>"
-                                + "<head>\n<title>"+tfPrefixo.getText()+i+"</title>\n</head>"
-                                + "\n<body>\n</body>\n</html>");
+                        + "<head>\n<title>"+tfPrefixo.getText()+i+"</title>\n</head>"
+                        + "\n<body>\n</body>\n</html>");
                         pen.close();
-                    }
-                    if(tfExt.getText().equals("php")){
+                        }
+                        if(tfExt.getText().equals("php")){
                         BufferedWriter pen = new BufferedWriter(new FileWriter(sel.fcPath.getSelectedFile()+"/"+tfPrefixo.getText()+i+"."+tfExt.getText()));
                         pen.append("<!DOCTYPE html>\n<html>");
                         pen.append("<head>\n<title>"+tfPrefixo.getText()+i+"</title>\n</head>\n<body>\n<?php"
-                                + "\n?>\n</body>\n");
+                        + "\n?>\n</body>\n");
                         pen.append("</html>");
                         pen.close();
+                        }*/
                     }
                 } catch (IOException ex) {
-                    Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+                    //Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+                    
                 }
             }
            // sel.setVisible(false);
@@ -185,16 +198,51 @@ public class Interface extends javax.swing.JFrame {
 
     private void btModelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModelActionPerformed
         String fileModel = tfExt.getText();
-        File arq = new File("models/"+fileModel+".txt");
+        File arq = new File(fileModel+".txt");
         if(arq.exists()){
-            System.out.println("existe");
+            System.out.println("Doctriz - Modelo Existente");
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader(fileModel+".txt"));
+                String model = "";
+                while(reader.ready()){
+                    model += " "+reader.readLine();
+                }
+                System.out.println("Doctriz \n - modelo: "+model);
+                ModelEditor modeleditor = new ModelEditor();
+                modeleditor.setModelType(fileModel);
+                modeleditor.setModel(model);
+                modeleditor.setVisible(true);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
         }else{
-            System.out.println("inexistente");
-            System.out.println("models/"+fileModel+".txt");
+            System.out.println("Doctriz - Modelo Inexistente");
+            //System.out.println(fileModel+".txt");
             try {
-                PrintWriter pen = new PrintWriter("models/"+fileModel+".txt");
+                PrintWriter pen = new PrintWriter(fileModel+".txt");
                 pen.close();
+                System.out.println("Doctriz - Modelo Criado");
+                
+                try {
+                BufferedReader reader = new BufferedReader(new FileReader(fileModel+".txt"));
+                String model = "";
+                while(reader.ready()){
+                    model += " "+reader.readLine();
+                }
+                System.out.println("Doctriz \n - modelo: "+model);
+                ModelEditor modeleditor = new ModelEditor();
+                modeleditor.setModelType(fileModel);
+                modeleditor.setModel(model);
+                modeleditor.setVisible(true);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+            }   catch (IOException ex) {
+                    Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
             }

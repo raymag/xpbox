@@ -30,7 +30,8 @@ public class Selecionar extends javax.swing.JFrame {
         fcPath = new javax.swing.JFileChooser();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         fcPath.setApproveButtonText("Gerar");
         fcPath.setCurrentDirectory(new java.io.File("C:\\Users\\Mag\\Desktop"));
