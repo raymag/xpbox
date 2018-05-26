@@ -180,6 +180,7 @@ public class CharacterGenerator extends javax.swing.JFrame {
                 skills.add("Liderar");
                 cbSkills.addItem("Spinner Blade");//POR DEMACIA!
                 skills.add("Spinner Blade");
+                break;
             case 1: //Ladina
                 cbSkills.addItem("Esfaquear");
                 skills.add("Esfaquear");
@@ -248,6 +249,7 @@ public class CharacterGenerator extends javax.swing.JFrame {
                 skills.add("Aplicar Alvo");
                 cbSkills.addItem("Neutralizar");
                 skills.add("Neutralizar");
+                break;
             case 6://Clériga
                 cbSkills.addItem("Purificar");
                 skills.add("Purificar");
