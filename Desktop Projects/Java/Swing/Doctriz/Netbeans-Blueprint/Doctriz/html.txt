@@ -1,0 +1,11 @@
+<html>
+<head>
+<title>!dt-docname</title>
+</head>
+<body>
+<form method="POST" action="!dt-docname.php">
+</form>
+<p>!dt-docname</p>
+<!-- Arquivo gerado por Doctriz em !dt-date-->
+</body>
+</html>
