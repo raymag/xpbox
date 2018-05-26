@@ -205,9 +205,9 @@ public class Interface extends javax.swing.JFrame {
                 BufferedReader reader = new BufferedReader(new FileReader(fileModel+".txt"));
                 String model = "";
                 while(reader.ready()){
-                    model += " "+reader.readLine();
+                    model += reader.readLine()+"\n";
                 }
-                System.out.println("Doctriz \n - modelo: "+model);
+                //System.out.println("Doctriz \n - modelo: "+model);
                 ModelEditor modeleditor = new ModelEditor();
                 modeleditor.setModelType(fileModel);
                 modeleditor.setModel(model);
@@ -230,9 +230,9 @@ public class Interface extends javax.swing.JFrame {
                 BufferedReader reader = new BufferedReader(new FileReader(fileModel+".txt"));
                 String model = "";
                 while(reader.ready()){
-                    model += " "+reader.readLine();
+                    model += reader.readLine()+"\n";
                 }
-                System.out.println("Doctriz \n - modelo: "+model);
+                //System.out.println("Doctriz \n - modelo: "+model);
                 ModelEditor modeleditor = new ModelEditor();
                 modeleditor.setModelType(fileModel);
                 modeleditor.setModel(model);
