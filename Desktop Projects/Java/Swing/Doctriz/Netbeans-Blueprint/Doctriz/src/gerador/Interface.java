@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author raymag
- * Versão 1.5
+ * Versão 2.1
  */
 public class Interface extends javax.swing.JFrame {
 
