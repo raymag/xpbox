@@ -22,7 +22,9 @@ public class JServer {
     public static void main(String[] args) {
         // TODO code application logic here
         try{
-            ServerSocket server = new ServerSocket(443);
+            System.out.print("Port Number: ");
+            int port = new Scanner(System.in).nextInt();
+            ServerSocket server = new ServerSocket(port);
             while(true){
                 System.out.println("Aguardando Conexão...");
                 Socket client = server.accept();
