@@ -53,6 +53,7 @@ public class Interface extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         btModel = new javax.swing.JButton();
         btHelp = new javax.swing.JButton();
+        btAdvanced = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gerador de Documentos");
@@ -102,6 +103,10 @@ public class Interface extends javax.swing.JFrame {
             }
         });
 
+        btAdvanced.setBackground(new java.awt.Color(204, 204, 255));
+        btAdvanced.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        btAdvanced.setText("Avançado");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,9 +114,11 @@ public class Interface extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btHelp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btModel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btAdvanced, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btModel, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,7 +157,8 @@ public class Interface extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btHelp)
-                    .addComponent(btModel))
+                    .addComponent(btModel)
+                    .addComponent(btAdvanced))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -168,10 +176,18 @@ public class Interface extends javax.swing.JFrame {
             //String path = sel.fcPath.getSelectedFile().getName();
             for(int i=1;i<=qnt;i++){
                 //System.out.println(String.valueOf(i));
-                File arq = new File(sel.fcPath.getSelectedFile()+"/"+tfPrefixo.getText()+i+"."+tfExt.getText());
-                String path = sel.fcPath.getSelectedFile()+"/"+tfPrefixo.getText()+i+"."+tfExt.getText();
-                //System.out.println(sel.fcPath.getSelectedFile()+"/"+tfPrefixo.getText()+i+".html");
-                //System.out.println(spQuantidade.getValue());
+                File arq;
+                String path;
+                if(qnt==1){
+                    arq = new File(sel.fcPath.getSelectedFile()+"/"+tfPrefixo.getText()+"."+tfExt.getText());
+                    path = sel.fcPath.getSelectedFile()+"/"+tfPrefixo.getText()+"."+tfExt.getText();    
+                }else{
+                    arq = new File(sel.fcPath.getSelectedFile()+"/"+tfPrefixo.getText()+i+"."+tfExt.getText());
+                    path = sel.fcPath.getSelectedFile()+"/"+tfPrefixo.getText()+i+"."+tfExt.getText();
+                    //System.out.println(sel.fcPath.getSelectedFile()+"/"+tfPrefixo.getText()+i+".html");
+                    //System.out.println(spQuantidade.getValue());
+                }
+                //System.out.println(path);
                 try {
                     arq.getParentFile().mkdirs();
                     arq.createNewFile();
@@ -180,7 +196,7 @@ public class Interface extends javax.swing.JFrame {
                     try (BufferedReader modelReader = new BufferedReader(new FileReader(doc))) {
                         model = "";
                         while(modelReader.ready()){
-                            model += " "+modelReader.readLine();
+                        model += " "+modelReader.readLine();
                         }
                         
                         model = model.replace("!dt-docname",tfPrefixo.getText()+i);
@@ -189,25 +205,9 @@ public class Interface extends javax.swing.JFrame {
                     }
                     try (BufferedWriter pen = new BufferedWriter(new FileWriter(path))) {
                         pen.append(model);
-                        /*if(tfExt.getText().equals("html")){
-                        BufferedWriter pen = new BufferedWriter(new FileWriter(sel.fcPath.getSelectedFile()+"/"+tfPrefixo.getText()+i+"."+tfExt.getText()));
-                        pen.append("<!DOCTYPE html>\n<html>"
-                        + "<head>\n<title>"+tfPrefixo.getText()+i+"</title>\n</head>"
-                        + "\n<body>\n</body>\n</html>");
-                        pen.close();
-                        }
-                        if(tfExt.getText().equals("php")){
-                        BufferedWriter pen = new BufferedWriter(new FileWriter(sel.fcPath.getSelectedFile()+"/"+tfPrefixo.getText()+i+"."+tfExt.getText()));
-                        pen.append("<!DOCTYPE html>\n<html>");
-                        pen.append("<head>\n<title>"+tfPrefixo.getText()+i+"</title>\n</head>\n<body>\n<?php"
-                        + "\n?>\n</body>\n");
-                        pen.append("</html>");
-                        pen.close();
-                        }*/
                     }
                 } catch (IOException ex) {
                     //Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
-                    
                 }
             }
            // sel.setVisible(false);
@@ -315,6 +315,7 @@ public class Interface extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAdvanced;
     private javax.swing.JButton btHelp;
     private javax.swing.JButton btModel;
     private javax.swing.JButton btPath;
