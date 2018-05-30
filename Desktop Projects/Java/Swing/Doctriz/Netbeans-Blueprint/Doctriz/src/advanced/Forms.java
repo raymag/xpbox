@@ -5,12 +5,16 @@
  */
 package advanced;
 
+import forms.form;
+import java.util.ArrayList;
+
 /**
  *
  * @author Mag
  */
 public class Forms extends javax.swing.JFrame {
-
+    int numForms = 0;
+    ArrayList<form> forms = new ArrayList<form>();
     /**
      * Creates new form Forms
      */
@@ -38,12 +42,13 @@ public class Forms extends javax.swing.JFrame {
         btDellInput = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Opções de Formulário");
 
         lbInput.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         lbInput.setText("Inputs:");
 
-        cbForm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbForm.setEnabled(false);
         cbForm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbFormActionPerformed(evt);
@@ -51,13 +56,20 @@ public class Forms extends javax.swing.JFrame {
         });
 
         btAddForm.setText("Adicionar Novo");
+        btAddForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAddFormActionPerformed(evt);
+            }
+        });
 
         btDelForm.setText("Remover");
+        btDelForm.setEnabled(false);
 
         lbForm.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         lbForm.setText("Formulário:");
 
         cbInput.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbInput.setEnabled(false);
         cbInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbInputActionPerformed(evt);
@@ -67,6 +79,7 @@ public class Forms extends javax.swing.JFrame {
         btAddInput.setText("Adicionar Novo");
 
         btDellInput.setText("Remover");
+        btDellInput.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -139,6 +152,15 @@ public class Forms extends javax.swing.JFrame {
     private void cbInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbInputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbInputActionPerformed
+
+    private void btAddFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddFormActionPerformed
+        form nform = new form(numForms);
+        forms.add(nform);
+        cbForm.addItem( String.valueOf(numForms++) ) ;
+        if(!cbForm.isEnabled()){
+            cbForm.setEnabled(true);
+            }
+    }//GEN-LAST:event_btAddFormActionPerformed
 
     /**
      * @param args the command line arguments

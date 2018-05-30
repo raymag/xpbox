@@ -5,6 +5,8 @@
  */
 package gerador;
 
+import advanced.Advanced;
+import advanced.Forms;
 import info.Ajuda;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -106,6 +108,11 @@ public class Interface extends javax.swing.JFrame {
         btAdvanced.setBackground(new java.awt.Color(204, 204, 255));
         btAdvanced.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         btAdvanced.setText("Avançado");
+        btAdvanced.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAdvancedActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -278,6 +285,12 @@ public class Interface extends javax.swing.JFrame {
         Ajuda ajuda = new Ajuda();
         ajuda.setVisible(true);
     }//GEN-LAST:event_btHelpActionPerformed
+
+    private void btAdvancedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdvancedActionPerformed
+        JOptionPane.showMessageDialog(null, "Função em Desenvolvimento");
+        /*Advanced advancedWindow = new Advanced();
+        advancedWindow.setVisible(true);*/
+    }//GEN-LAST:event_btAdvancedActionPerformed
 
     /**
      * @param args the command line arguments

@@ -35,6 +35,11 @@ public class Advanced extends javax.swing.JFrame {
         btForm.setBackground(new java.awt.Color(255, 204, 204));
         btForm.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         btForm.setText("Formulários");
+        btForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btFormActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -55,6 +60,12 @@ public class Advanced extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFormActionPerformed
+        Forms formWindow = new Forms();
+        formWindow.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btFormActionPerformed
 
     /**
      * @param args the command line arguments
