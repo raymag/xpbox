@@ -287,9 +287,10 @@ public class Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_btHelpActionPerformed
 
     private void btAdvancedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdvancedActionPerformed
-        JOptionPane.showMessageDialog(null, "Função em Desenvolvimento");
-        /*Advanced advancedWindow = new Advanced();
-        advancedWindow.setVisible(true);*/
+        //JOptionPane.showMessageDialog(null, "Função em Desenvolvimento");
+        Advanced advancedWindow = new Advanced();
+        advancedWindow.setVisible(true);
+        //*/
     }//GEN-LAST:event_btAdvancedActionPerformed
 
     /**

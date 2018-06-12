@@ -530,7 +530,7 @@
           <Font name="sansserif" size="18" style="0"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="13">
+          <StringArray count="15">
             <StringItem index="0" value="Guerreira"/>
             <StringItem index="1" value="Ladina"/>
             <StringItem index="2" value="Mago"/>
@@ -541,9 +541,11 @@
             <StringItem index="7" value="Barda"/>
             <StringItem index="8" value="Fantasma"/>
             <StringItem index="9" value="Necromante"/>
-            <StringItem index="10" value="Xam&#xe3;"/>
-            <StringItem index="11" value="Domador de Bestas"/>
-            <StringItem index="12" value="Feiticeira"/>
+            <StringItem index="10" value="Domador de Bestas"/>
+            <StringItem index="11" value="Feiticeira"/>
+            <StringItem index="12" value="Monge"/>
+            <StringItem index="13" value="Ilusionista"/>
+            <StringItem index="14" value="Mentalista"/>
           </StringArray>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value=""/>

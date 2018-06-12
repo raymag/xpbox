@@ -51,8 +51,8 @@
                   <Component id="cbClass" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="lbClass" min="-2" pref="213" max="-2" attributes="0"/>
-              <EmptySpace pref="14" max="32767" attributes="0"/>
+              <Component id="lbClass" min="-2" pref="262" max="-2" attributes="0"/>
+              <EmptySpace pref="16" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -83,7 +83,7 @@
           <Font name="sansserif" size="18" style="0"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="10">
+          <StringArray count="15">
             <StringItem index="0" value="Guerreira"/>
             <StringItem index="1" value="Ladina"/>
             <StringItem index="2" value="Mago"/>
@@ -94,12 +94,14 @@
             <StringItem index="7" value="Barda"/>
             <StringItem index="8" value="Fantasma"/>
             <StringItem index="9" value="Necromante"/>
+            <StringItem index="10" value="Domador de Bestas"/>
+            <StringItem index="11" value="Feiticeira"/>
+            <StringItem index="12" value="Monge"/>
+            <StringItem index="13" value="Ilusionista"/>
+            <StringItem index="14" value="Mentalista"/>
           </StringArray>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbClassActionPerformed"/>
-      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
