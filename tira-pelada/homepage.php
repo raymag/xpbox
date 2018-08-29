@@ -1,49 +1,5 @@
-<?php 
+<?php
 session_start();
-if(isset($_SESSION["players"]) && !isset($_POST["playerName"])){
-    // $teams = $_SESSION["teams"];
-    $players = $_SESSION["players"];
-    $numPlayers = $_SESSION["numPlayers"];
-    $numTeams = $_SESSION["numTeams"];
-    $undefined = $_SESSION["undefined"]; 
-    $bronze = $_SESSION["bronze"];
-    $silver = $_SESSION["silver"];
-    $gold = $_SESSION["gold"];
-
-    foreach($players as $player){
-        echo "==========";
-        echo "<br>";
-        echo "Nome: ".$player["playerName"];
-        echo "<br>";
-        echo "Categoria: ".$player["playerCategory"];
-        echo "<br>";
-    }
-    
-    echo "<br><br><br>";
-    echo "<br>";
-    echo "Jogadores: $numPlayers";
-    echo "<br>";
-    echo "Times: $numTeams";
-    echo "<br>";
-    echo "Ouro: $gold";
-    echo "<br>";
-    echo "Prata: $silver";
-    echo "<br>";
-    echo "Bronze: $bronze";
-    echo "<br>";
-    echo "Indefinido: $undefined";
-    echo "<br>";
-}else{
-    $teams = array();
-    $players = array();
-    $undefined = 0; 
-    $bronze = 0;
-    $silver = 0;
-    $gold = 0;
-    if(!isset($_SESSION["players"])){
-        $_SESSION["players"] = array();
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +8,7 @@ if(isset($_SESSION["players"]) && !isset($_POST["playerName"])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>TiraPelada</title>
-    <link rel="stylesheet" href="../dw2/css/padrao.css">
+    <link rel="stylesheet" href="css/padrao.css">
 </head>
 <body>
 <div id="container">
@@ -149,7 +105,61 @@ if(isset($_POST["playerName"][0])){
 </form>
 </fieldset>
 </div>
+<?php 
+if(isset($_SESSION["players"]) && !isset($_POST["playerName"])){
+    // $teams = $_SESSION["teams"];
+    $players = $_SESSION["players"];
+    $numPlayers = $_SESSION["numPlayers"];
+    $numTeams = $_SESSION["numTeams"];
+    $undefined = $_SESSION["undefined"]; 
+    $bronze = $_SESSION["bronze"];
+    $silver = $_SESSION["silver"];
+    $gold = $_SESSION["gold"];
 
+    echo "<br>";
+    echo "Jogadores: $numPlayers";
+    echo "<br>";
+    echo "Times: $numTeams";
+    echo "<br>";
+    echo "Ouro: $gold";
+    echo "<br>";
+    echo "Prata: $silver";
+    echo "<br>";
+    echo "Bronze: $bronze";
+    echo "<br>";
+    echo "Indefinido: $undefined";
+    echo "<br>";
+    echo "<hr>";
+
+    echo "<div class='container'>";
+    foreach($players as $player){
+        // echo "==========";
+        echo "<div class='player-block'>";
+        echo "Nome: ".$player["playerName"];
+        echo "<br>";
+        echo "Categoria: ".$player["playerCategory"];
+        echo "</div>";
+    }
+    echo "</div>";
+}else{
+    $teams = array();
+    $players = array();
+    $undefined = 0; 
+    $bronze = 0;
+    $silver = 0;
+    $gold = 0;
+    if(!isset($_SESSION["players"])){
+        $_SESSION["players"] = array();
+        $_SESSION["numPlayers"] = 0;
+        $_SESSION["numTeams"] = 0;
+        $_SESSION["undefined"] = $undefined;
+        $_SESSION["bronze"] = $bronze;
+        $_SESSION["silver"] = $silver;
+        $_SESSION["gold"] = $gold;
+        
+    }
+}
+?>
 
 </div> 
 </body>

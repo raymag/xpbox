@@ -1,3 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TiraPelada</title>
+    <link rel="stylesheet" href="css/padrao.css">
+</head>
+<body>
+<div id="container">
+<div id="section">
 <?php 
 session_start();
 $players = $_SESSION["players"];
@@ -16,8 +28,8 @@ for($i=0;$i < $numTeams;$i++){
 
 while($gold-- >0){
     foreach($players as $player){ 
-        if($player["playerCategory"] == "gold"){
-            sort($teams);
+        sort($teams);
+        if($player["playerCategory"] == "gold" && count($teams[0])<6 ){
             $teams[0][] = $player;
             $teams[0][0] += 3;
             unset($players[array_search($player, $players)]);
@@ -26,8 +38,8 @@ while($gold-- >0){
 }
 while($silver-- >0){
     foreach($players as $player){
-        if($player["playerCategory"] == "silver"){
-            sort($teams);
+        sort($teams);
+        if($player["playerCategory"] == "silver" && count($teams[0])<6 ){
             $teams[0][] = $player;
             $teams[0][0] += 2;
             unset($players[array_search($player, $players)]);
@@ -36,8 +48,8 @@ while($silver-- >0){
 }
 while($bronze-- >0){
     foreach($players as $player){
-        if($player["playerCategory"] == "bronze"){
-            sort($teams);
+        sort($teams);
+        if($player["playerCategory"] == "bronze" && count($teams[0])<6 ){
             $teams[0][] = $player;
             $teams[0][0] += 1;
             unset($players[array_search($player, $players)]);
@@ -46,7 +58,7 @@ while($bronze-- >0){
 }
 while($undefined-- >0){
     foreach($players as $player){
-        if($player["playerCategory"] == "undefined"){
+        if($player["playerCategory"] == "undefined" && count($teams[0])<6 ){
             $min = count($teams[0]);
             $minTeam = $teams[0];
             foreach($teams as $team){
@@ -63,7 +75,7 @@ while($undefined-- >0){
 echo count($teams)." Times<br>";
 foreach($teams as $team){
     // echo "<br>";
-    echo "+++++++++++++++++++";
+    echo "<hr>";
     echo "<br>";
     echo "Pontos: ".$team[0];
     echo "<br/>";
@@ -73,24 +85,13 @@ foreach($teams as $team){
     }
     echo "<br>";
 }
+echo "<hr>";
+// foreach($players as $player){
+//     if()
+// }
 // var_dump($players);
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>TiraPelada</title>
-    <link rel="stylesheet" href="../dw2/css/padrao.css">
-</head>
-<body>
-<div id="container">
-<div id="section">
-<ol>
-<?php 
-?>
-</ol>
+<a href="homepage.php">Voltar</a>
 </div> 
 </body>
 </html>
