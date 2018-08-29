@@ -1,5 +1,3 @@
-
-
 while True:
       ouro = int(input("Ouro: "))
       prata = int(input("Prata: "))
@@ -16,17 +14,24 @@ while True:
             teams[0][2] += 1
             teams[0][3] += 3
             teams[0][4] += 1
-      print(teams)
+      #print(teams)
       for i in range(prata):
             teams = sorted(teams, key=lambda x:x[3])
             teams[0][1] += 1
             teams[0][3] += 2
             teams[0][4] += 1
-      print(teams)
+      #print(teams)
       for i in range(bronze):
             teams = sorted(teams, key=lambda x:x[3])
             teams[0][0] += 1
             teams[0][3] += 1
             teams[0][4] += 1
-      print(teams)
+      #print(teams)
+      for team in teams:
+            print("="*30)
+            print("Time: >>>>>>>>>>>>>>>>>>>>>>> \n")
+            print(team[2], "- jogadores ouro")
+            print(team[1], "- jogadores prata")
+            print(team[0], "- jogadores bronze")
+            print("="*30)
             
