@@ -1,60 +1,34 @@
 #! /usr/bin/python
-# -*- encoding: utf-8 -*-
+#! -*- encoding: utf-8 -*-
+import click
 
-import random, math, click
+def findAnagrams(word):
+    if len(word) <=1:
+        return word
+    else:
+        tmp = []
+        for perm in findAnagrams(word[1:]):
+            for i in range(len(word)):
+                tmp.append(perm[:i] + word[0:1] + perm[i:])
+        return tmp
 
-def permut(num):
-	n = num
-	result = 1
-	while(n>1):
-		result *= n
-		n-=1
-	return result
+@click.group()
+def main():
+	pass
 
-def anagram(word):
-	anagramQnt = 0
-	chars = []
-	subst = []
-	for l in word:
-		chars.append(l)
-		subst.append(l)
-	anagrams = []
-	while(anagramQnt<permut(len(word))):
-		anagram = ""
-		for i in range(len(word)):
-			choosen = random.randint(0, len(chars)-1)
-			anagram+= chars[choosen]
-			chars.remove(chars[choosen])
-		equal = False
-		for i in anagrams:
-			if(anagram==i):
-				equal = True
-		if(equal==False):
-			anagrams.append(anagram)
-		anagramQnt+=1
-		for j in subst:
-			chars.append(j)
-	anagrams.append('\n'+str(anagramQnt)+" anagramas")
-	return anagrams
-
-@click.command()
+@main.command()
 @click.argument('word')
-@click.option('--inline', default=False, help='It returns the anagrams with a inline look')
-def main(word, inline):
-	''' Prints all anagrams of a given word '''
-	anagramas = anagram(word)
-	
+@click.option('--inline', default=False, help="If True, it will return the anagrams in a inline way")
+def get_anagrams(word, inline):
+	anagrams = findAnagrams(word)
+	click.echo('Anagrams of {}:'.format(word))
 	if inline:
-		txt = ""
-		for i in anagramas:
-			txt+= i+', '
-		txt = txt[:-2]
-		click.echo('Anagrams of {}:'.format(word))
+		txt = ', '.join(anagrams)
 		click.echo(txt)
 	else:
-		click.echo('Anagrams of {}:'.format(word))
-		for i in anagramas:
-			click.echo(i)
+		for anagram in anagrams:
+			click.echo(anagram)
+	click.echo('{} anagrams'.format(len(anagrams)))
 
 if __name__ == '__main__':
 	main()
