@@ -1,5 +1,7 @@
-import random
-import math
+#! /usr/bin/python
+# -*- encoding: utf-8 -*-
+
+import random, math, click
 
 def permut(num):
 	n = num
@@ -32,13 +34,27 @@ def anagram(word):
 		anagramQnt+=1
 		for j in subst:
 			chars.append(j)
-	anagrams.append(str(anagramQnt)+" anagramas")
+	anagrams.append('\n'+str(anagramQnt)+" anagramas")
 	return anagrams
 
-word = input("Palavra alvo: ")
-anagramas = anagram(word)
+@click.command()
+@click.argument('word')
+@click.option('--inline', default=False, help='It returns the anagrams with a inline look')
+def main(word, inline):
+	''' Prints all anagrams of a given word '''
+	anagramas = anagram(word)
+	
+	if inline:
+		txt = ""
+		for i in anagramas:
+			txt+= i+', '
+		txt = txt[:-2]
+		click.echo('Anagrams of {}:'.format(word))
+		click.echo(txt)
+	else:
+		click.echo('Anagrams of {}:'.format(word))
+		for i in anagramas:
+			click.echo(i)
 
-
-for i in anagramas:
-	print(i)
-
+if __name__ == '__main__':
+	main()
